@@ -1,0 +1,63 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "clusterName": {
+            "value": "myhdi40"
+        },
+        "clusterLoginUserName": {
+            "value": ""
+        },
+        "clusterLoginPassword": {
+            "value": ""
+        },
+        "sshUserName": {
+            "value": "sshuser"
+        },
+        "sshPassword": {
+            "value": ""
+        },
+        "existingClusterStorageResourceGroup": {
+            "value": "myhdicls5"
+        },
+        "existingClusterStorageAccountName": {
+            "value": "myhdicls5stg"
+        },
+        "newOrExistingClusterStorageContainerName": {
+            "value": "myhdicls5fs"
+        },
+        "existingSQLServerResourceGroup": {
+            "value": "myhdicls5-rg"
+        },
+        "existingSQLServerName": {
+            "value": "myhdicls5sqlsrv"
+        },
+        "existingSQLServerUsername": {
+            "value": ""
+        },
+        "existingSQLServerPassword": {
+           "value": ""
+        },
+        "existingAmbariSqlDBName": {
+            "value": "myhdicls5ambarisql"
+        },
+        "existingVirtualNetworkResourceGroup": {
+            "value": "myhdienv-shared-rg"
+        },
+        "existingVirtualNetworkName": {
+            "value": "hdi-shared-vnet"
+        },
+        "existingVirtualNetworkSubnetName": {
+            "value": "hdi-subnet"
+        },
+        "existingAdlsGen2StgAccountname": {
+            "value": "myhdicls5stg"
+        },
+        "existingHdiUserAssignedManagedIdentityId": {
+            "value": ""
+        },
+        "existingAdlsGen2FileSystem": {
+            "value": "myhdicls5fs"
+        }
+    }
+}

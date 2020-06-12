@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "clusterName": {
-            "value": "myhdi40"
+            "value": ""
         },
         "clusterLoginUserName": {
-            "value": ""
+            "value": "myhdiuser"
         },
         "clusterLoginPassword": {
             "value": ""
@@ -17,15 +17,6 @@
         "sshPassword": {
             "value": ""
         },
-        "existingClusterStorageResourceGroup": {
-            "value": ""
-        },
-        "existingClusterStorageAccountName": {
-            "value": ""
-        },
-        "newOrExistingClusterStorageContainerName": {
-            "value": ""
-        },
         "existingSQLServerResourceGroup": {
             "value": ""
         },
@@ -33,7 +24,7 @@
             "value": ""
         },
         "existingSQLServerUsername": {
-            "value": ""
+            "value": "mysqladmin"
         },
         "existingSQLServerPassword": {
            "value": ""

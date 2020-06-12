@@ -20,7 +20,7 @@ variable "adminaduser_name" {
 
 variable "sql_username" {
     type = string
-    default = ""    
+    default = "mysqladmin"    
 }
 
 variable "sql_password" {

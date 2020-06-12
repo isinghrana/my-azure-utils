@@ -18,19 +18,19 @@
             "value": ""
         },
         "existingClusterStorageResourceGroup": {
-            "value": "myhdicls5"
+            "value": ""
         },
         "existingClusterStorageAccountName": {
-            "value": "myhdicls5stg"
+            "value": ""
         },
         "newOrExistingClusterStorageContainerName": {
-            "value": "myhdicls5fs"
+            "value": ""
         },
         "existingSQLServerResourceGroup": {
-            "value": "myhdicls5-rg"
+            "value": ""
         },
         "existingSQLServerName": {
-            "value": "myhdicls5sqlsrv"
+            "value": ""
         },
         "existingSQLServerUsername": {
             "value": ""
@@ -39,7 +39,7 @@
            "value": ""
         },
         "existingAmbariSqlDBName": {
-            "value": "myhdicls5ambarisql"
+            "value": ""
         },
         "existingVirtualNetworkResourceGroup": {
             "value": "myhdienv-shared-rg"
@@ -51,12 +51,9 @@
             "value": "hdi-subnet"
         },
         "existingAdlsGen2StgAccountname": {
-            "value": "myhdicls5stg"
-        },
-        "existingHdiUserAssignedManagedIdentityId": {
             "value": ""
-        },
-        "existingAdlsGen2FileSystem": {
+        },        
+        "newOrExistingAdlsGen2FileSystem": {
             "value": "myhdicls5fs"
         }
     }

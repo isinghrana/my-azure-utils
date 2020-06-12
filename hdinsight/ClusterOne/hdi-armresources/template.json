@@ -142,7 +142,7 @@
                "description": ""
            }
        },
-       "existingAdlsGen2FileSystem": {
+       "newOrExistingAdlsGen2FileSystem": {
            "type": "string",
            "metadata": {
                "description": ""
@@ -157,10 +157,9 @@
           }
        }*/
     },
-  /*  "variables":{
-       "sqldbname":"[concat(parameters('existingSQLServerName'), '/', parameters('newMetastoreDBName'))]",
-       "nestedtemplate_name":"sqlDbDeployment"
-    },*/
+    "variables":{
+       "hdimanagedidentityname": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name,'/providers/Microsoft.ManagedIdentity/userAssignedIdentities/', 'myhdicls5')]"
+    },
     "resources":[    
        {
           "name":"[parameters('clusterName')]",
@@ -170,8 +169,11 @@
           "identity": {
             "type": "UserAssigned",
             "userAssignedIdentities": {
-                /*"/subscriptions/36cfc6d6-79ca-4642-b263-93d6eaa4a823/resourceGroups/myhdicls1-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myhdicls1": {}*/
+                /*
+                "/subscriptions/36cfc6d6-79ca-4642-b263-93d6eaa4a823/resourceGroups/myhdicls1-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myhdicls5": {}
                 "[parameters('existingHdiUserAssignedManagedIdentityId')]": { }          
+                */
+                "[variables('hdimanagedidentityname')]": {}
         }
        },
           "properties":{
@@ -200,7 +202,7 @@
                         /*"name": "[parameters('existingAdlsGen2StgAccountname')]",*/
                         "resourceId": "[resourceId(resourceGroup().name,'Microsoft.Storage/storageAccounts', parameters('existingAdlsGen2StgAccountname'))]",
                         "msiResourceId": "[parameters('existingHdiUserAssignedManagedIdentityId')]",
-                        "fileSystem": "[parameters('existingAdlsGen2FileSystem')]",
+                        "fileSystem": "[parameters('newOrExistingAdlsGen2FileSystem')]",
                         "isDefault": true
                     }
                 ]

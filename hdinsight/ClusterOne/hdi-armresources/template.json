@@ -135,11 +135,7 @@
           "apiVersion":"2018-06-01-preview",          
           "identity": {
             "type": "UserAssigned",
-            "userAssignedIdentities": {
-                /*
-                "/subscriptions/36cfc6d6-79ca-4642-b263-93d6eaa4a823/resourceGroups/myhdicls1-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myhdicls5": {}
-                "[parameters('existingHdiUserAssignedManagedIdentityId')]": { }          
-                */
+            "userAssignedIdentities": {                
                 "[variables('hdimanagedidentityname')]": {}
         }
        },

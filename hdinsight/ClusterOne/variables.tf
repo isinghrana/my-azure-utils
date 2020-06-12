@@ -3,11 +3,6 @@ variable "prefix" {
     default = ""
 }
 
-variable "sqlsrv" {
-    type = string
-    default = ""
-}
-
 variable "adminaduser_objectid" {
   type = string
   default = ""

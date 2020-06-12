@@ -1,6 +1,6 @@
 variable "prefix" {
     type = string
-    default = "myhdicls5"
+    default = ""
 }
 
 variable "sqlsrv" {
@@ -8,24 +8,19 @@ variable "sqlsrv" {
     default = ""
 }
 
-variable "sqlsrv_rg" {
-    type = string
-    default = "myhdienv-shared-rg"
-}
-
-variable "owner_userid" {
+variable "adminaduser_objectid" {
   type = string
-  default = "0cd5d12b-d692-42fb-af58-3014e32c881b"
+  default = ""
 }
 
-variable "sql_accountname" {
+variable "adminaduser_name" {
     type = string
-    default = ""    
+    default = ""
 }
 
 variable "sql_username" {
     type = string
-    default = ""    
+    default = "mysqladmin"    
 }
 
 variable "sql_password" {
@@ -33,8 +28,5 @@ variable "sql_password" {
     default = ""
 }
 
-variable "client_ip" {
-    type = string
-    default = ""  
-}
+
 

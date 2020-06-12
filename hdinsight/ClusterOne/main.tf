@@ -11,6 +11,10 @@ data "azurerm_subnet" "hdi_subnet" {
   virtual_network_name = "hdi-shared-vnet"
   resource_group_name  = "myhdienv-shared-rg"
 }
+/*
+data "azuread_user" "admin" {
+  user_principal_name = "insinghr@microsoft.com"
+}*/
 
 #create new resource group
 resource "azurerm_resource_group" "rg" {

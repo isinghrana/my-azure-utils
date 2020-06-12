@@ -11,10 +11,9 @@ resource "azurerm_sql_server" "sqlsrv" {
 resource "azurerm_sql_active_directory_administrator" "sqlsrvadadmin" {
   server_name         = azurerm_sql_server.sqlsrv.name
   resource_group_name = azurerm_resource_group.rg.name
-  login               = "Inder Rana"
+  login               = var.adminaduser_name
   tenant_id           = data.azurerm_client_config.current.tenant_id
-  object_id           = data.azurerm_client_config.current.object_id
-
+  object_id           = var.adminaduser_objectid  
   depends_on = [ azurerm_sql_server.sqlsrv ]
 }
 

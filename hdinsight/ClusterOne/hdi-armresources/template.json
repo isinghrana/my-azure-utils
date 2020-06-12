@@ -61,25 +61,6 @@
              "description":"The password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
           }
        },
-       "existingClusterStorageResourceGroup":{
-          "type":"string",
-          "defaultValue":"[resourceGroup().name]",
-          "metadata":{
-             "description":"The resource group name of the storage account to use as the cluster's default storage."
-          }
-       },
-       "existingClusterStorageAccountName":{
-          "type":"string",
-          "metadata":{
-             "description":"The name of the storage account to use as the cluster's default storage."
-          }
-       },
-       "newOrExistingClusterStorageContainerName":{
-          "type":"string",
-          "metadata":{
-             "description":"The name of the storage container to use."
-          }
-       },
        "existingSQLServerResourceGroup":{
           "type":"string",
           "defaultValue":"[resourceGroup().name]",
@@ -136,31 +117,16 @@
                "description": ""
            }
        },
-       "existingHdiUserAssignedManagedIdentityId": {
+       "newOrExistingAdlsGen2FileSystem": {
            "type": "string",
            "metadata": {
                "description": ""
            }
-       },
-       "existingAdlsGen2FileSystem": {
-           "type": "string",
-           "metadata": {
-               "description": ""
-           }
-       }
-       /*,
-       "location":{
-          "type":"string",
-          "defaultValue":"[resourceGroup().location]",
-          "metadata":{
-             "description":"Location for all resources."
-          }
-       }*/
+         }      
     },
-  /*  "variables":{
-       "sqldbname":"[concat(parameters('existingSQLServerName'), '/', parameters('newMetastoreDBName'))]",
-       "nestedtemplate_name":"sqlDbDeployment"
-    },*/
+    "variables":{
+       "hdimanagedidentityname": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name,'/providers/Microsoft.ManagedIdentity/userAssignedIdentities/', parameters('clusterName'))]"
+    },
     "resources":[    
        {
           "name":"[parameters('clusterName')]",
@@ -170,8 +136,11 @@
           "identity": {
             "type": "UserAssigned",
             "userAssignedIdentities": {
-                /*"/subscriptions/36cfc6d6-79ca-4642-b263-93d6eaa4a823/resourceGroups/myhdicls1-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myhdicls1": {}*/
+                /*
+                "/subscriptions/36cfc6d6-79ca-4642-b263-93d6eaa4a823/resourceGroups/myhdicls1-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myhdicls5": {}
                 "[parameters('existingHdiUserAssignedManagedIdentityId')]": { }          
+                */
+                "[variables('hdimanagedidentityname')]": {}
         }
        },
           "properties":{
@@ -197,10 +166,9 @@
                 "storageaccounts": [
                     {
                         "name": "[concat(parameters('existingAdlsGen2StgAccountname'),'.dfs.core.windows.net')]",
-                        /*"name": "[parameters('existingAdlsGen2StgAccountname')]",*/
                         "resourceId": "[resourceId(resourceGroup().name,'Microsoft.Storage/storageAccounts', parameters('existingAdlsGen2StgAccountname'))]",
-                        "msiResourceId": "[parameters('existingHdiUserAssignedManagedIdentityId')]",
-                        "fileSystem": "[parameters('existingAdlsGen2FileSystem')]",
+                        "msiResourceId": "[variables('hdimanagedidentityname')]",
+                        "fileSystem": "[parameters('newOrExistingAdlsGen2FileSystem')]",
                         "isDefault": true
                     }
                 ]

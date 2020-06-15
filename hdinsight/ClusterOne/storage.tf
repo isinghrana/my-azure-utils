@@ -16,7 +16,7 @@ resource "azurerm_storage_account" "stg" {
 
   network_rules {
     default_action = "Deny"
-    ip_rules = ["168.63.129.16", "168.61.49.99", "23.99.5.239","168.61.48.131", "138.91.141.162", "13.82.225.233", "40.71.175.99"]
+    ip_rules = [/*"168.63.129.16", "168.61.49.99", "23.99.5.239","168.61.48.131", "138.91.141.162", */"13.82.225.233", "40.71.175.99"]
     virtual_network_subnet_ids = [data.azurerm_subnet.hdi_subnet.id]
   }
 }

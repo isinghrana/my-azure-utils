@@ -26,6 +26,7 @@ resource "azurerm_sql_database" "ambaridb" {
   requested_service_objective_name = "S1"
 }
 
+/*
 resource "azurerm_sql_firewall_rule" "hdi-mgmt-dns" {
   name                = "hdi-mgmt-dns"
   resource_group_name = azurerm_resource_group.rg.name
@@ -65,6 +66,7 @@ resource "azurerm_sql_firewall_rule" "hdi-mgmt-allregion4" {
   start_ip_address    = "138.91.141.162"
   end_ip_address      = "138.91.141.162"
 }
+*/
 
 resource "azurerm_sql_firewall_rule" "hdi-mgmt-eastus1" {
   name                = "hdi-mgmt-eastus1"

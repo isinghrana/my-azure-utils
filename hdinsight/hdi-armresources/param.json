@@ -1,0 +1,61 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "clusterName": {
+            "value": ""
+        },
+        "clusterLoginUserName": {
+            "value": ""
+        },
+        "clusterLoginPassword": {
+            "value": ""
+        },
+        "sshUserName": {
+            "value": ""
+        },
+        "sshPassword": {
+            "value": ""
+        },
+        "existingSQLServerResourceGroup": {
+            "value": ""
+        },
+        "existingSQLServerName": {
+            "value": ""
+        },
+        "existingSQLServerUsername": {
+            "value": ""
+        },
+        "existingSQLServerPassword": {
+           "value": ""
+        },
+        "existingAmbariSqlDBName": {
+            "value": ""
+        },
+        "existingVirtualNetworkResourceGroup": {
+            "value": ""
+        },
+        "existingVirtualNetworkName": {
+            "value": ""
+        },
+        "existingVirtualNetworkSubnetName": {
+            "value": ""
+        },
+        "existingAdlsGen2StgAccountResourceGroup": {
+            "value": ""
+        },
+        "existingAdlsGen2StgAccountname": {
+            "value": ""
+        },        
+        "newOrExistingAdlsGen2FileSystem": {
+            "value": ""
+        },
+        "existingHdiUserManagedIdentityResourceGroup": {
+            "value": ""
+        },
+        "existingHdiUserManagedIdentityName": {
+            "value": ""
+        }
+
+    }
+}

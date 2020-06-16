@@ -12,11 +12,11 @@ resource "azurerm_network_interface" "vm-nic" {
   }
 }
 
-resource "azurerm_linux_virtual_machine" "vm" {
-  name                            = "hdiclientlinuxvm"
+resource "azurerm_virtual_machine" "vm" {
+  name                            = "${var.prefix}-vm"
   resource_group_name             = azurerm_resource_group.rg.name
   location                        = azurerm_resource_group.rg.location
-  size                            = "Standard_DS2"
+  size                            = var.vm_type
   admin_username                  = var.vm_username
   admin_password                  = var.vm_password
   disable_password_authentication = false

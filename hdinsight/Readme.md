@@ -6,10 +6,13 @@ Sample scripts to create and HDInsight environment as shown in the following arc
 **Environment Creation**
 1. Download Terraform - https://www.terraform.io/
 2. Download the folder/repo to local machine
-3. Go over the *variable.tf* file and update the values as per your environment, the file itself has instructions in the comments
-4. On a Terminal go to the *hdinsight* folder 
-5. Run the command *terraform init*
-6. Run the command *terraform apply* to create the environment
+3. Download Azure CLI - https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest
+4. Go over the *variable.tf* file and update the values as per your environment, the file itself has instructions in the comments
+5. On a Terminal go to the *hdinsight* folder 
+6. Run the command *az login*
+7. Run the command *az account set -s <subscriptionid or name>* (Optional - only if you have multiple subscriptions and you want to use non-default Azure Subscription)
+7. Run the command *terraform init*
+8. Run the command *terraform apply* to create the environment
 
 It takes about 30-40 minutes to provision this environment. A total to 2 Resource Groups are created, one for Azure HInsight cluster and the other for pre-requiste resources needed by Azure HDInsight.
 

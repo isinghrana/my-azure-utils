@@ -72,6 +72,21 @@ resource "azurerm_network_security_rule" "AllowHDIManagement2" {
   network_security_group_name = azurerm_network_security_group.hdi-subnet-nsg.name
 }
 
+resource "azurerm_network_security_rule" "hdi-external-in-allow" {
+  name                        = "hdi-externalclient-in-allow"
+  priority                    = 1200
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "*"
+  source_port_range           = "*"
+  destination_port_range      = "443"
+  source_address_prefix       = var.external_client_iprange
+  destination_address_prefix  = "*"
+  resource_group_name         = azurerm_resource_group.rg.name
+  network_security_group_name = azurerm_network_security_group.hdi-subnet-nsg.name
+}
+
+
 /*VM Subnet NSG */
 resource "azurerm_network_security_group" "vm-subnet-nsg" {
   name = "${var.prefix}-vm-subnet-nsg"
@@ -102,7 +117,6 @@ resource "azurerm_subnet_network_security_group_association" "azure-bastion-subn
                  azurerm_network_security_rule.bastion-azure-out-allow
                 ]
 }
-
 
 resource "azurerm_network_security_rule" "bastion-control-in-allow" {
   name                        = "bastion-control-in-allow"
@@ -142,6 +156,20 @@ resource "azurerm_network_security_rule" "bastion-azure-out-allow" {
   destination_port_range      = "443"
   source_address_prefix       = "*"
   destination_address_prefix  = "AzureCloud"
+  resource_group_name         = azurerm_resource_group.rg.name
+  network_security_group_name = azurerm_network_security_group.azure-bastion-subnet-nsg.name
+}
+
+resource "azurerm_network_security_rule" "bastion-externalclient-in-allow" {
+  name                        = "bastion-externalclient-in-allow"
+  priority                    = 1300
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "*"
+  source_port_range           = "*"
+  destination_port_range      = "443"
+  source_address_prefix       = var.external_client_iprange
+  destination_address_prefix  = "*"
   resource_group_name         = azurerm_resource_group.rg.name
   network_security_group_name = azurerm_network_security_group.azure-bastion-subnet-nsg.name
 }

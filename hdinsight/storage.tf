@@ -16,7 +16,9 @@ resource "azurerm_storage_account" "stg" {
 
   network_rules {
     default_action = "Deny"
-    ip_rules = [var.allow_hdimgmt_region_ip1, var.allow_hdimgmt_region_ip2]
+    ip_rules = [var.allow_hdimgmt_region_ip1, 
+                var.allow_hdimgmt_region_ip2, 
+                var.external_client_iprange]
     virtual_network_subnet_ids = [ azurerm_subnet.vm-subnet.id, azurerm_subnet.hdi-subnet.id ]
   }
 }

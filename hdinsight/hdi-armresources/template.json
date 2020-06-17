@@ -111,6 +111,12 @@
              "description":"The existing virtual network subnet name."
           }
        },
+       "existingAdlsGen2StgAccountResourceGroup": {
+         "type": "string",
+         "metadata": {
+             "description": ""
+         }
+       },
        "existingAdlsGen2StgAccountname": {
            "type": "string",
            "metadata": {
@@ -122,10 +128,22 @@
            "metadata": {
                "description": ""
            }
+         },
+         "existingHdiUserManagedIdentityResourceGroup": {
+            "type": "string",
+            "metadata": {
+               "description": ""
+            }
+         },
+         "existingHdiUserManagedIdentityName": {
+            "type": "string",
+            "metadata": {
+               "description": ""
+            }
          }      
     },
     "variables":{
-       "hdimanagedidentityname": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name,'/providers/Microsoft.ManagedIdentity/userAssignedIdentities/', parameters('clusterName'))]"
+       "hdimanagedidentityname": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', parameters('existingHdiUserManagedIdentityResourceGroup'),'/providers/Microsoft.ManagedIdentity/userAssignedIdentities/', parameters('existingHdiUserManagedIdentityName'))]"
     },
     "resources":[    
        {
@@ -162,7 +180,7 @@
                 "storageaccounts": [
                     {
                         "name": "[concat(parameters('existingAdlsGen2StgAccountname'),'.dfs.core.windows.net')]",
-                        "resourceId": "[resourceId(resourceGroup().name,'Microsoft.Storage/storageAccounts', parameters('existingAdlsGen2StgAccountname'))]",
+                        "resourceId": "[resourceId(parameters('existingAdlsGen2StgAccountResourceGroup'),'Microsoft.Storage/storageAccounts', parameters('existingAdlsGen2StgAccountname'))]",
                         "msiResourceId": "[variables('hdimanagedidentityname')]",
                         "fileSystem": "[parameters('newOrExistingAdlsGen2FileSystem')]",
                         "isDefault": true

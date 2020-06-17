@@ -18,7 +18,7 @@
             "value": ""
         },
         "existingSQLServerResourceGroup": {
-            "value": ""
+            "value": "myhdi60-rg"
         },
         "existingSQLServerName": {
             "value": ""
@@ -33,10 +33,10 @@
             "value": ""
         },
         "existingVirtualNetworkResourceGroup": {
-            "value": "myhdienv-shared-rg"
+            "value": "myhdi60-rg"
         },
         "existingVirtualNetworkName": {
-            "value": "hdi-shared-vnet"
+            "value": "myhdi60-vnet"
         },
         "existingVirtualNetworkSubnetName": {
             "value": "hdi-subnet"
@@ -46,6 +46,10 @@
         },        
         "newOrExistingAdlsGen2FileSystem": {
             "value": ""
+        },
+        "hdi-usermanagedidentityname": {
+            "value": "myhdi60hdiu"
         }
+
     }
 }

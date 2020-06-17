@@ -21,6 +21,8 @@ resource "azurerm_storage_account" "stg" {
                 var.external_client_iprange]
     virtual_network_subnet_ids = [ azurerm_subnet.vm-subnet.id, azurerm_subnet.hdi-subnet.id ]
   }
+
+  depends_on = [azurerm_subnet.hdi-subnet, azurerm_subnet.vm-subnet]
 }
 /*
 resource "azurerm_role_assignment" "additional_owner" {

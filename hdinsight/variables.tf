@@ -18,7 +18,7 @@ variable "location" {
 
 variable "prefix" {
     type = string
-    default = "XXX01"
+    default = "qa01"
 }
 
 variable "vm_username" {
@@ -36,10 +36,9 @@ variable "vm_size" {
   default = "Standard_DS2"
 }
 
-
 variable "sqladmin_aadlogin_name" {
   type = string
-  default = ""
+  default = "Inder Rana"
   description = "Display name of the user account in Azure AD "
 }
 variable "sql_username" {

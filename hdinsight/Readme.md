@@ -33,3 +33,8 @@ These resources will cost a few dollars per hour so do remember to delete the en
 **Azure ARM Template for HDInsight**
 
 You will notice that the actual HDInsight is provisioned using Azure ARM Template rather than Terraform and this is because currently Terraform HDInsight Spark resource does not allow provisioning cluster with external metastore. This is also the reason for creating HDInsight clsuter in a separate resource group, as per the documentation [azurerm_template_deployment](https://www.terraform.io/docs/providers/azurerm/r/template_deployment.html) its better to create resources from ARM Template in a separate Resource Group.
+
+
+**Other Notes**
+- Creating multiple HDInsight clusters in the same Virtual Network requires first 6 characters of the cluster name are unique.
+- Password for HDInsight must be at least 10 characters in length and must contain at least one digit, one uppercase and one lower case letter, one non-alphanumeric character (except characters ' " ` )

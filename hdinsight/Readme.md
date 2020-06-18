@@ -3,6 +3,9 @@ Sample scripts to create and HDInsight environment as shown in the following arc
 
 <img src="./ArchitectureDiagram.JPG" alt="Architecture Diagram" width="100%" height="100%">
 
+**Note**: Please refer to my medium post [**Provisioning Azure HDInsight Environment with Strong Network Controls**](https://medium.com/@isinghrana/provisioning-azure-hdinsight-environment-with-strong-network-controls-a631dcf3a125) to get better context on the reasoning behding this architecture.
+
+
 **Environment Creation**
 1. Download Terraform - https://www.terraform.io/
 2. Download the folder/repo to local machine

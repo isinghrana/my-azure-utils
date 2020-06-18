@@ -18,7 +18,7 @@ variable "location" {
 
 variable "prefix" {
     type = string
-    default = "qa01"
+    default = ""
 }
 
 variable "vm_username" {
@@ -38,7 +38,7 @@ variable "vm_size" {
 
 variable "sqladmin_aadlogin_name" {
   type = string
-  default = "Inder Rana"
+  default = ""
   description = "Display name of the user account in Azure AD "
 }
 variable "sql_username" {
@@ -128,6 +128,9 @@ variable "external_client_iprange" {
     Update as per your environment - If connecting from corporate networks this would be a set of CIDR Ranges,
     if you are just trying out provisioning and don't have the exact ranges just go to https://whatismyip.com then use the following scheme
     to set value. Say, if it shows 173.25.66.22 then set the value to 173.25.0.0/16 
+
+    In corporate environments, most likely there will be a handuful of IP Ranges so variables of similar nature
+    will need to be added as well as corresponding changes made to the tf files storage.tf and vnet.tf (Bastion Subnet and HDI Subnet) 
     */
   type = string
   default = "" 

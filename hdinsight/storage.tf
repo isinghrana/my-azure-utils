@@ -22,15 +22,13 @@ resource "azurerm_storage_account" "stg" {
     virtual_network_subnet_ids = [ azurerm_subnet.vm-subnet.id, azurerm_subnet.hdi-subnet.id ]
   }
 
-  depends_on = [azurerm_subnet.hdi-subnet, azurerm_subnet.vm-subnet]
+  depends_on = [azurerm_subnet.hdi-subnet, 
+                azurerm_subnet.vm-subnet, 
+                azurerm_network_security_group.vm-subnet-nsg,
+                azurerm_network_security_group.hdi-subnet-nsg,
+                azurerm_subnet_network_security_group_association.hdi-subnet-nsg-association,
+                azurerm_subnet_network_security_group_association.vm-subnet-nsg-association]  
 }
-/*
-resource "azurerm_role_assignment" "additional_owner" {
-  scope                = azurerm_storage_account.stg.id
-  role_definition_name = "Owner"
-  principal_id         =  data.azurerm_client_config.current.object_id  
-}
-*/
 
 resource "azurerm_role_assignment" "stg_auth_hdiuseridentity" {
   scope                = azurerm_storage_account.stg.id

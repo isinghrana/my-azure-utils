@@ -140,6 +140,24 @@
             "metadata": {
                "description": ""
             }
+         },
+         "existingBlobStgAccountResourceGroup": {
+            "type": "string",
+            "metadata": {
+               "description": ""
+            }
+         },
+         "existingBlobStgAccountname": {
+            "type": "string",
+            "metadata": {
+               "description": ""
+            }
+         },
+         "existingBlobStgContainer": {
+            "type": "string",
+            "metadata": {
+               "description": ""
+            }
          }      
     },
     "variables":{
@@ -184,6 +202,12 @@
                         "msiResourceId": "[variables('hdimanagedidentityname')]",
                         "fileSystem": "[parameters('newOrExistingAdlsGen2FileSystem')]",
                         "isDefault": true
+                    },
+                    {
+                      "name": "[concat(parameters('existingBlobStgAccountname'),'.blob.core.windows.net')]",
+                      "isDefault": false,
+                      "container": "[parameters('existingBlobStgContainer')]",
+                      "key": "[listKeys(resourceId(parameters('existingBlobStgAccountResourceGroup'),'Microsoft.Storage/storageAccounts', parameters('existingBlobStgAccountname')), '2019-04-01').keys[0].value]"
                     }
                 ]
              },

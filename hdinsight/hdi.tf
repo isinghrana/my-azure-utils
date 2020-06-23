@@ -27,7 +27,10 @@ resource "azurerm_template_deployment" "hdi" {
       "existingAdlsGen2StgAccountname" = "${var.prefix}stg"
       "newOrExistingAdlsGen2FileSystem" = "${var.prefix}fs"
       "existingHdiUserManagedIdentityResourceGroup" = "${var.prefix}-rg"
-      "existingHdiUserManagedIdentityName" = "${var.prefix}hdiumi"
+      "existingHdiUserManagedIdentityName" = "${var.prefix}hdiumi",
+      "existingBlobStgAccountResourceGroup" = "${var.prefix}-rg",
+      "existingBlobStgAccountname" = "${var.prefix}addlstg",
+      "existingBlobStgContainer" = azurerm_storage_container.addl_stg_cont.name
    }
   deployment_mode = "Incremental"
   depends_on =   [
@@ -40,6 +43,8 @@ resource "azurerm_template_deployment" "hdi" {
     azurerm_network_security_rule.AllowHDIManagement1,
     azurerm_network_security_rule.AllowHDIManagement2,
     azurerm_virtual_network.vnet,
-    azurerm_subnet.hdi-subnet
+    azurerm_subnet.hdi-subnet,
+    azurerm_storage_container.addl_stg_cont,
+    azurerm_storage_account.addl_stg
   ]
 }

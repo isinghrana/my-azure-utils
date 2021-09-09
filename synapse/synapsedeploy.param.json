@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "prefix": {
+        "value": "isrsyn5"
+      },
+      "firewallIPRanges" : {
+        "value": [ "173.25.163.0/24", "17.25.165.0/24"]
+      }
+    }
+  }

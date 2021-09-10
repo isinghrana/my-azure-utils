@@ -3,10 +3,25 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "prefix": {
-        "value": "isrsyn5"
+        "value": "isrsyns2"
       },
       "firewallIPRanges" : {
-        "value": [ "173.25.163.0/24", "17.25.165.0/24"]
+        "value": [ "173.25.163.0/24", "173.25.165.0/24"]
+      },
+      "synapseWorkspaceFirewallStartEndIPRanges": {
+        "value": [
+                "173.25.163.0,173.25.163.255",
+                "173.25.165.0,173.25.165.255" 
+        ]
+      },
+      "sqlAdministratorLogin": {
+        "value": "isrsqladmin5"
+      },
+      "sqlAdministratorLoginPassword": {
+        "value": ""
+      },
+      "sqlSku": {
+        "value": "DW100c"
       }
     }
   }

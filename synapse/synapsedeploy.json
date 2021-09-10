@@ -39,88 +39,60 @@
     },
     "resources": [
         {
-            "type": "Microsoft.Storage/storageAccounts",
-            "apiVersion": "[variables('defaultApiVersion')]",
-            "name": "[variables('primaryStorageName')]",
-            "location": "[parameters('location')]",
-            "sku": {
-                "name": "[parameters('storageSKU')]"
-            },
-            "kind": "StorageV2",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-10-01",
+            "name": "PrimaryStorageLinkedTemplate",
             "properties": {
-                "accessTier": "Hot",
-                "supportsHttpsTrafficOnly": true,
-                "isHnsEnabled": true,
-                "networkAcls": {
-                    "bypass": "AzureServices",
-                    "defaultAction": "Deny",
-                    "copy": [
-                        {
-                            "name": "ipRules",
-                            "count": "[length(parameters('firewallIPRanges'))]",
-                            "input": {
-                                "action": "Allow",
-                                "value": "[parameters('firewallIPRanges')[copyIndex('ipRules')]]"
-                            }
-                        }
-                    ]
-                }
-            },
-            "resources": [
-                {
-                    "name": "[concat('/default/', variables('primaryStorageContainerName'))]",
-                    "type": "blobServices/containers",
-                    "apiVersion": "[variables('defaultApiVersion')]",
-                    "dependsOn": [
-                        "[variables('primaryStorageName')]"
-                    ],
-                    "properties": {
-                        "publicAccess": "None"
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://mystorageaccount.blob.core.windows.net/AzureTemplates/newStorageAccount.json"                    
+                },
+                "parameters": {
+                    "storageName":  {
+                        "value": "[variables('primaryStorageName')]"
+                    },
+                    "storageContainerName": {
+                        "value": "[variables('primaryStorageContainerName')]"
+                    },
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "storageSKU": {
+                        "value": "[parameters('storageSKU')]"
+                    },
+                    "firewallIPRanges": {
+                        "value": "[parameters('firewallIPRanges')]"
                     }
                 }
-            ]
+            }
         },
         {
-            "type": "Microsoft.Storage/storageAccounts",
-            "apiVersion": "[variables('defaultApiVersion')]",
-            "name": "[variables('secondaryStorageName')]",
-            "location": "[parameters('location')]",
-            "sku": {
-                "name": "[parameters('storageSKU')]"
-            },
-            "kind": "StorageV2",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-10-01",
+            "name": "SeondaryStorageLinkedTemplate",
             "properties": {
-                "accessTier": "Hot",
-                "supportsHttpsTrafficOnly": true,
-                "isHnsEnabled": true,
-                "networkAcls": {
-                    "bypass": "AzureServices",
-                    "defaultAction": "Deny",
-                    "copy": [
-                        {
-                            "name": "ipRules",
-                            "count": "[length(parameters('firewallIPRanges'))]",
-                            "input": {
-                                "action": "Allow",
-                                "value": "[parameters('firewallIPRanges')[copyIndex('ipRules')]]"
-                            }
-                        }
-                    ]
-                }
-            },
-            "resources": [
-                {
-                    "name": "[concat('/default/', variables('secondaryStorageContainerName'))]",
-                    "type": "blobServices/containers",
-                    "apiVersion": "[variables('defaultApiVersion')]",
-                    "dependsOn": [
-                        "[variables('secondaryStorageName')]"
-                    ],
-                    "properties": {
-                        "publicAccess": "None"
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://mystorageaccount.blob.core.windows.net/AzureTemplates/newStorageAccount.json"                    
+                },
+                "parameters": {
+                    "storageName":  {
+                        "value": "[variables('secondaryStorageName')]"
+                    },
+                    "storageContainerName": {
+                        "value": "[variables('secondaryStorageContainerName')]"
+                    },
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "storageSKU": {
+                        "value": "[parameters('storageSKU')]"
+                    },
+                    "firewallIPRanges": {
+                        "value": "[parameters('firewallIPRanges')]"
                     }
                 }
-            ]
+            }
         }
     ]
 }

@@ -27,3 +27,17 @@ write-output "PrimaryStorageAccountName: $primaryStorageName"
 
 $secondaryStorageName = $deploymentOutput.Outputs["secondaryStorageName"].value
 write-output "SecondaryStorageAccountName: $secondaryStorageName"
+
+
+Write-output "Retrieving current Azure Context to get TenantID"
+$context = Get-AzContext
+$tenantId = $context.Tenant.TenantId
+write-output "TenantId: $tenantId"
+
+Write-Output "Adding Resource Access Rule to $primaryStorageName to allow connections from Synapse Workspace"
+Add-AzStorageAccountNetworkRule -ResourceGroupName $resourceGroup -Name $primaryStorageName -TenantId $tenantId -ResourceId $workspaceResourceID
+
+
+Write-Output "Adding Resource Access Rule to $secondaryStorageName to allow connections from Synapse Workspace"
+Add-AzStorageAccountNetworkRule -ResourceGroupName $resourceGroup -Name $secondaryStorageName -TenantId $tenantId -ResourceId $workspaceResourceID
+

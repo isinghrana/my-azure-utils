@@ -1,0 +1,36 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "synapseNamePrefix": {
+            "value": "isrsynzz1" 
+        },
+        "defaultStorageName": {
+            "value": "isrsyn5prstg" 
+        },
+        "defaultStorageContainerName": {
+            "value": "synapsedefault" 
+        },
+        "grantWorkspaceMIControlOnSqlPool": {
+            "value": false
+        },
+        "firewallStartEndIPRanges": {
+            "value": [ "0.0.0.0,255.255.255.255" ]
+        },        
+        "sparkDeployment": {
+            "value": "true"
+        },
+        "sparkNodeSize": {
+            "value": "Small"
+        },
+        "sqlAdministratorLogin": {
+            "value": "isrsqladmin1" 
+        },
+        "sqlAdministratorLoginPassword": {
+            "value": ""
+        },
+        "sku": {
+            "value": "DW100c"
+        }
+    }
+}

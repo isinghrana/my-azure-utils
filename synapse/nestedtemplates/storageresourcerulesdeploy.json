@@ -5,7 +5,7 @@
         "storageName" : {
             "type": "string"            
         },
-        "storageContainerName": {
+        "synapseworkspacename": {
             "type": "string"
         },
         "location": {

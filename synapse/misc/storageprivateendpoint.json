@@ -1,7 +1,0 @@
-{
-    "name": "isrsyns2sdstgPrivateEndpoint",
-    "properties": {
-        "privateLinkResourceId": "/subscriptions/36cfc6d6-79ca-4642-b263-93d6eaa4a823/resourceGroups/isrsyns2-rg/providers/Microsoft.Storage/storageAccounts/isrsyns2sdstg",
-        "groupId": "dfs"
-    }
-}

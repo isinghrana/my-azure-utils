@@ -1,4 +1,6 @@
 $ErrorActionPreference = "Stop"
+
+#json string template for creating the Private Endpoint Definition file
 $createPrivateEndpointJsonString = "
 {    
     `"properties`": {
@@ -23,7 +25,7 @@ if (!(Test-path -path $tempFolderPath))
     New-Item -ItemType directory -path $tempFolderPath
 }
 
-write-output "createing the PrivateEndpoint Definition Json file...."
+write-output "creating the PrivateEndpoint Definition Json file...."
 $createPrivateEndpointFilePath = ".\$tempFolderPath\createprivateendpoint.json"
 Set-Content -Path $createPrivateEndpointFilePath -value $createPrivateendpointFinalString
 

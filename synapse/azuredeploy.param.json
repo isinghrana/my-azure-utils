@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "prefix": {
-        "value": "isrsyns2"
+        "value": "isrsyns4"
       },
       "firewallIPRanges" : {
         "value": [ "173.25.163.0/24", "173.25.165.0/24"]

@@ -1,3 +1,9 @@
+param( 
+    [Parameter(Mandatory = $true)]    
+    [string] $storageAccountName,
+    [Parameter(Mandatory = $true)]    
+    [string] $workspaceName)
+
 $ErrorActionPreference = "Stop"
 
 #json string template for creating the LinkedService Definition file
@@ -16,8 +22,8 @@ $createLinkedServiceJsonString = "
     }
 }"
 
-$storageAccountName = "isrsyns2sdstg"
-$workspaceName = "isrsyns2ws"
+#$storageAccountName = "isrsyns2sdstg"
+#$workspaceName = "isrsyns2ws"
 
 $createLinkedServiceFinalString = $createLinkedServiceJsonString -replace "{storageaccountname}", $storageAccountName
 write-output "LinkedService creation JSON - "

@@ -1,3 +1,9 @@
+param( 
+    [Parameter(Mandatory = $true)]    
+    [string] $storageAccountName,
+    [Parameter(Mandatory = $true)]    
+    [string] $workspaceName)
+
 $ErrorActionPreference = "Stop"
 
 #json string template for creating the Private Endpoint Definition file
@@ -9,8 +15,8 @@ $createPrivateEndpointJsonString = "
     }
 }"
 
-$storageAccountName = "isrsyns2prstg"
-$workspaceName = "isrsyns2ws"
+#$storageAccountName = "isrsyns2prstg"
+#$workspaceName = "isrsyns2ws"
 
 $storageAccountPrivateLinkResourceId = (Get-AzResource -Name $storageAccountName).ResourceId
 
@@ -20,8 +26,7 @@ write-output $createPrivateendpointFinalString
 
 $tempFolderPath = ".\temp"
 
-if (!(Test-path -path $tempFolderPath))
-{
+if (!(Test-path -path $tempFolderPath)) {
     New-Item -ItemType directory -path $tempFolderPath
 }
 
@@ -40,11 +45,9 @@ do {
     $counter++
     $privateEndpointConnectionObj = Get-AzPrivateEndpointConnection -PrivateLinkResourceId $storageAccountPrivateLinkResourceId
     write-output $privateEndpointConnectionObj
-    if ($privateEndpointConnectionObj.ProvisioningState -eq "Succeeded" )
-    {
+    if ($privateEndpointConnectionObj.ProvisioningState -eq "Succeeded" ) {
         write-Output "Private Endpoint provisioning state is Succeeded"
-        if ($privateEndpointConnectionObj.PrivateLinkServiceConnectionState.Status -eq "Approved")
-        {
+        if ($privateEndpointConnectionObj.PrivateLinkServiceConnectionState.Status -eq "Approved") {
             Write-Output "Private Endpoint for $storageAccountName is already approved"
             break
         }
@@ -53,8 +56,7 @@ do {
         write-output "Private Endpoint for $storageAccountName successfully approved"
         break
     }
-    elseif($privateEndpointConnectionObj.ProvisioningState -eq "Failed" )
-    {
+    elseif ($privateEndpointConnectionObj.ProvisioningState -eq "Failed" ) {
         Write-Error "Error in provisioing Private Endpoint for $storageAccountName"        
         break
     }    
@@ -62,5 +64,5 @@ do {
         Write-Error "PrivateEndpoint creation for $storageAccountName stuck so erroring out after 10 retries"
     }
     
-} while($true)
+} while ($true)
 

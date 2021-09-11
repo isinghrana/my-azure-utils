@@ -204,6 +204,10 @@
         }
     ],    
     "outputs": {
+            "workspaceName": {
+                "type": "string",
+                "value": "[reference('SynapseWorkspaceLinkedTemplate').outputs.workspacename.value]"
+            },
             "workspaceResourceId": {
                 "type": "string",
                 "value": "[reference('SynapseWorkspaceLinkedTemplate').outputs.workspaceresourceid.value]"

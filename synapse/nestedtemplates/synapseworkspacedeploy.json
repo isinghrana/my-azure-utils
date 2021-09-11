@@ -196,6 +196,10 @@
         }
     ],
     "outputs": {
+        "workspacename": {
+            "type": "string",
+            "value": "[variables('workspaceName')]"            
+        },
         "workspaceresourceid": {
             "type": "string",
             "value": "[resourceId('Microsoft.Synapse/workspaces', variables('workspaceName'))]"

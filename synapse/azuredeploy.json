@@ -4,8 +4,10 @@
       "parameters" : {
 	     "prefix": {
             "type": "string",
+            "minLength": 5,
+            "maxLength": 12,
             "metadata": {
-                "description": "Prefix to be used for naming resources"
+                "description": "Prefix used for naming resources. Value needs to be globally unique, I usually use my name initials, resource type indicator (like syn for synapse) and then add a few digits to come up with prefix e.g. isrsyn12"
             }
         },
         "location": {
@@ -27,15 +29,18 @@
         },
         "firewallIPRanges": {
             "type": "array",
-            "defaultValue": [ "0.0.0.0./0" ]
+            "minLength": 1,
+            "metadata": {
+                "description": "If connecting from corporate networks this would be a set of CIDR Ranges and you will need find these out from the networking teams, these IP Ranges are referred to as Corporate Public or NAT IP Ranges. Example CIDR blocks notation is  173.25.163.0/24. If you are just trying out provisioning and don't have the exact ranges you can try finding your public IP using the website https://whatismyip.com . Say, if it shows 173.25.66.22 then set the value to 173.25.66.22/32"
+            }
         },
         "storageDeployTemplateUri": {
             "type": "string",
-            "defaultValue": "https://raw.githubusercontent.com/isinghrana/my-azure-utils/isr-synapse-public/synapse/nestedtemplates/storagedeploy.json"
+            "defaultValue": "https://raw.githubusercontent.com/isinghrana/my-azure-utils/master/synapse/nestedtemplates/storagedeploy.json"
         },
         "synapseDeployTemplateUri": {
             "type": "string",
-            "defaultValue": "https://raw.githubusercontent.com/isinghrana/my-azure-utils/isr-synapse-public/synapse/nestedtemplates/synapseworkspacedeploy.json"
+            "defaultValue": "https://raw.githubusercontent.com/isinghrana/my-azure-utils/master/synapse/nestedtemplates/synapseworkspacedeploy.json"
         },
         "grantSynapseWorkspaceMIControlONSqlPool": {
             "type": "bool",
@@ -43,6 +48,7 @@
         },
         "synapseWorkspaceFirewallStartEndIPRanges": {
             "type": "array",
+            "minLength": 1,
             "metadata": {
                 "description" : "These will need match with the Firewall IP Ranges, Storage and Synapse take Firewal IP ranges in different formats so this is redundant hopefully there will be a better way the f uture but for now specifiy IP Ranges in two foramts. Each element of array is a comma-separted tuple where first tuple is SartIPAddress and second is EndIPAddress. Example - If CIDR Range is 173.10.100.0/24 then value is 173.10.100.0,173.10.100.255. You can use the following online tool to get the ranges from CIDR block - https://www.ipaddressguide.com/cidr"
             }
@@ -62,12 +68,14 @@
         },
         "sqlAdministratorLogin": {
             "type": "string",
+            "minLength": 5,
             "metadata": {
                 "description": "The username of the SQL Administrator"
             }
         },
         "sqlAdministratorLoginPassword": {
             "type": "securestring",
+            "minLength": 10,
             "metadata": {
                 "description": "The password for the SQL Administrator"
             }

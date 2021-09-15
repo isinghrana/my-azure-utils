@@ -2,26 +2,47 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+      /* Parameter file is being kept simple with minimal number of parameters you have tp specify.
+      Please see the corresponding ARM template files azuredeploy.json for other parameters,
+      you can add additional paramters to this file and specify desired values as needed but other parameters are set with reasonable defaults 
+      for getting started.
+      */    
+      
       "prefix": {
-        "value": "isrsyns4"
+         /* 
+        Prefix used for naming resources
+        Value needs to be globally unique, I usually use my name initials, resource type indicator (like syn for synapse) and then add a few digits to come up with prefix e.g. isrsyn12
+        MinLength is 5 and MaxLength is 12       
+       */
+        "value": "" 
       },
       "firewallIPRanges" : {
-        "value": [ "173.25.163.0/24", "173.25.165.0/24"]
+              /*      
+              Set as per your environment 
+              If connecting from corporate networks this would be a set of CIDR Ranges and you will need find these out from the networking teams, these IP Ranges are referred
+              to as Corporate Public or NAT IP Ranges. Example CIDR blocks notation is  173.25.163.0/24.
+              If you are just trying out provisioning and don't have the exact ranges you can try finding your public IP using the website https://whatismyip.com . Say, if it shows 173.25.66.22 then set the value to 173.25.66.22/32
+              At least 1 value is required for the array
+      */
+        "value": [ ]
       },
       "synapseWorkspaceFirewallStartEndIPRanges": {
-        "value": [
-                "173.25.163.0,173.25.163.255",
-                "173.25.165.0,173.25.165.255" 
-        ]
-      },
+        /*
+          These will correspond to the FirewallIPRanges parameter, Storage and Synapse take Firewal IP ranges in different formats so 
+          this is redundant hopefully there will be a better way in the future but for now specifiy IP Ranges in differnt foramt for this paramter.
+          Each element of array is a comma-separted tuple where first tuple is StartIPAddress and second is EndIPAddress.
+          Example - If CIDR Range is 173.10.100.0/24 then value is 173.10.100.0,173.10.100.255. 
+          You can use the following online tool to get Start and End IP addresses from CIDR block - https://www.ipaddressguide.com/cidr
+        */
+        "value": []
+      },      
       "sqlAdministratorLogin": {
-        "value": "isrsqladmin5"
-      },
-      "sqlAdministratorLoginPassword": {
+        /* MinLength is 5 */ 
         "value": ""
       },
-      "sqlSku": {
-        "value": "DW100c"
-      }
+      "sqlAdministratorLoginPassword": {
+        /* MinLength is 10 */
+        "value": ""
+      }      
     }
   }

@@ -31,8 +31,9 @@ The scripts are mix of ARM Templates and few powershell scripts because everythi
 
 It takes about 5-10 minutes to provision this environment. 
 
+***
 
-#### Resources Created
+### Resources Created
 
 Following resources are created as part of these scripts
 - Resource Group for all the resources (please see the pre-req section for an exception that Resource Group can be pre-created)
@@ -41,11 +42,11 @@ Following resources are created as part of these scripts
   - Synapse Spark Pool  
 - Primary Storage Account (ADLS Gen2)
 - Secondary Storage Account (ADLS Gen2)
-Please see the [Azure Syanpse Environment Architecture](TODO:mediumpost link) on my blog for more details.
+Please see the more details on the medium blog post.
 
 ***
 
-**Note**
+### Next Steps
 Don’t forget to Assign end users permissions on the Storage Account, even the user account which creates the Synapse Workspace is not setup with Data Plane access on the Storage Account for Synapse Storage Browser to work
 * RBAC - https://docs.microsoft.com/en-us/azure/storage/blobs/assign-azure-role-data-access?tabs=powershell
 * ACL - https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-access-control#how-to-set-acls

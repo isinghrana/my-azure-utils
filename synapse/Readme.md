@@ -30,6 +30,7 @@ The scripts are mix of ARM Templates and few powershell scripts because everythi
 6. Run the command *./depoy.ps1*
 
 It takes about 5-10 minutes to provision this environment.
+
 **Note**: You still need to grant end-user permissions to use Azure Synapse Workspace, SQL Pool and Storage Account. Please see  last section (bottom) of the blog post - [Azure Synapse Environment Setup Key Considerations — Get started using ARM Template Provisioning Scripts](https://isinghrana.medium.com/azure-synapse-environment-setup-key-considerations-get-started-using-arm-template-provisioning-b71bf637ced6)
 
 ***
@@ -41,8 +42,9 @@ Following resources are created as part of these scripts
 - Azure Syanspe Workspace 
   - SQL Dedicated Pool inside Syanpse workspace
   - Synapse Spark Pool  
-- Primary Storage Account (ADLS Gen2)
-- Secondary Storage Account (ADLS Gen2)
+  - Linked Service for Secondary Storage Account
+- Primary Storage Account (ADLS Gen2) and the corresponding Managed Private Endpoint
+- Secondary Storage Account (ADLS Gen2) and the corresponding Managed Private Endpoint
 Please see the more details on the medium blog post.
 
 **Note**

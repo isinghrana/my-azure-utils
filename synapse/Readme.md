@@ -44,6 +44,11 @@ Following resources are created as part of these scripts
 - Secondary Storage Account (ADLS Gen2)
 Please see the more details on the medium blog post.
 
+#### Environment Deletion
+
+Please do note that there will be costs associated with the resources created using these scripts. It would be a good idea to pause SQL Dedicated Pool when not using it, costs for other components should be pretty minimal. Please see the pricing page for detailed costs of Azure Synapse components - https://azure.microsoft.com/en-us/pricing/details/synapse-analytics/
+
+
 ***
 
 ### Next Steps
@@ -52,9 +57,5 @@ Don’t forget to Assign end users permissions on the Storage Account, even the 
 * ACL - https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-access-control#how-to-set-acls
 
 ***
-
-### Environment Deletion
-
-Please do note that there will be costs associated with the resources created using these scripts. It would be a good idea to pause SQL Dedicated Pool when not using it, costs for other components should be pretty minimal. Please see the pricing page for detailed costs of Azure Synapse components - https://azure.microsoft.com/en-us/pricing/details/synapse-analytics/
 
 

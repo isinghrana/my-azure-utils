@@ -2,7 +2,7 @@
 ## Azure Synapse Workspace Environment Creation Scripts 
 ***
 
-These are the companion scripts my medium blog post  [**XXXXX**](https://medium.com/@isinghrana/XxXXX) so please read the blog post for better context on the key considerations for the architecture.
+These are the companion scripts my medium blog post  [Azure Synapse Environment Setup Key Considerations — Get started using ARM Template Provisioning Scripts](https://isinghrana.medium.com/azure-synapse-environment-setup-key-considerations-get-started-using-arm-template-provisioning-b71bf637ced6) so please read the blog post for better context on the key considerations for the architecture.
 
 The scripts are mix of ARM Templates and few powershell scripts because everything is not available using ARM Templates at this time (please do note some of the preview features are used). The following diagram shows the architecture of the environment created by the scripts.
 
@@ -23,13 +23,14 @@ The scripts are mix of ARM Templates and few powershell scripts because everythi
 ### Environment Creation
 
 1. Download the folder/repo to local machine
-4. Go over the *azuredeploy.param.json* file and specify the parameter values as per your environment, the file itself has instructions in the comments
-5. On Powershell window go to the *synapse* folder 
-6. Sign in to your Azure account using the commandlet *Connect-AzAccount* (see the public docs [here](https://docs.microsoft.com/en-us/powershell/azure/authenticate-azureps?view=azps-6.4.0) if new to Azure)
-7. Set the context to the desired Subscription if you have access to multiple Subscripition using *Set-AzContext* Commandlet (public docs [here](https://docs.microsoft.com/en-us/powershell/module/az.accounts/set-azcontext?view=azps-6.4.0#examples))
-7. Run the command *./depoy.ps1*
+2. Go over the *azuredeploy.param.json* file and specify the parameter values as per your environment, parameter file has empty values so this step is required, the file itself has instructions in the comments explaining the minimal number of parameters to get started. 
+3. On Powershell window go to the *synapse* folder 
+4. Sign in to your Azure account using the commandlet *Connect-AzAccount* (see the public docs [here](https://docs.microsoft.com/en-us/powershell/azure/authenticate-azureps?view=azps-6.4.0) if new to Azure)
+5. Set the context to the desired Subscription if you have access to multiple Subscripition using *Set-AzContext* Commandlet (public docs [here](https://docs.microsoft.com/en-us/powershell/module/az.accounts/set-azcontext?view=azps-6.4.0#examples))
+6. Run the command *./depoy.ps1*
 
-It takes about 5-10 minutes to provision this environment. 
+It takes about 5-10 minutes to provision this environment.
+**Note**: You still need to grant end-user permissions to use Azure Synapse Workspace, SQL Pool and Storage Account. Please see  last section (bottom) of the blog post - [Azure Synapse Environment Setup Key Considerations — Get started using ARM Template Provisioning Scripts](https://isinghrana.medium.com/azure-synapse-environment-setup-key-considerations-get-started-using-arm-template-provisioning-b71bf637ced6)
 
 ***
 
@@ -44,6 +45,8 @@ Following resources are created as part of these scripts
 - Secondary Storage Account (ADLS Gen2)
 Please see the more details on the medium blog post.
 
+**Note**
+
 #### Environment Deletion
 
 Please do note that there will be costs associated with the resources created using these scripts. It would be a good idea to pause SQL Dedicated Pool when not using it, costs for other components should be pretty minimal. Please see the pricing page for detailed costs of Azure Synapse components - https://azure.microsoft.com/en-us/pricing/details/synapse-analytics/
@@ -51,11 +54,5 @@ Please do note that there will be costs associated with the resources created us
 
 ***
 
-### Next Steps
-Don’t forget to Assign end users permissions on the Storage Account, even the user account which creates the Synapse Workspace is not setup with Data Plane access on the Storage Account for Synapse Storage Browser to work
-* RBAC - https://docs.microsoft.com/en-us/azure/storage/blobs/assign-azure-role-data-access?tabs=powershell
-* ACL - https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-access-control#how-to-set-acls
-
-***
 
 

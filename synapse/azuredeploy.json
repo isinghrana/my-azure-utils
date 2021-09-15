@@ -31,7 +31,7 @@
             "type": "array",
             "minLength": 1,
             "metadata": {
-                "description": "If connecting from corporate networks this would be a set of CIDR Ranges and you will need find these out from the networking teams, these IP Ranges are referred to as Corporate Public or NAT IP Ranges. Example CIDR blocks notation is  173.25.163.0/24. If you are just trying out provisioning and don't have the exact ranges you can try finding your public IP using the website https://whatismyip.com . Say, if it shows 173.25.66.22 then set the value to 173.25.66.22/32"
+                "description": "Set as per your environment - Value is either IP Address or CIDR Block. If connecting from corporate networks this would be a set of CIDR Ranges and you will need find these out from the networking teams, these IP Ranges are referred to as Corporate Public or NAT IP Ranges. Example CIDR blocks notation is  173.25.163.0/24. If you are just trying out provisioning and don't have the exact ranges you can try finding your public IP using the website https://whatismyip.com . Say, if it shows 173.25.66.22 then set the value to 173.25.66.22"
             }
         },
         "storageDeployTemplateUri": {

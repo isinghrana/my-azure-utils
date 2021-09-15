@@ -18,23 +18,30 @@
       },
       "firewallIPRanges" : {
               /*      
-              Set as per your environment 
+              Set as per your environment - Value is either IP Address or CIDR Block
               If connecting from corporate networks this would be a set of CIDR Ranges and you will need find these out from the networking teams, these IP Ranges are referred
               to as Corporate Public or NAT IP Ranges. Example CIDR blocks notation is  173.25.163.0/24.
-              If you are just trying out provisioning and don't have the exact ranges you can try finding your public IP using the website https://whatismyip.com . Say, if it shows 173.25.66.22 then set the value to 173.25.66.22/32
+              If you are just trying out provisioning and don't have the exact ranges you can try finding your public IP using the website https://whatismyip.com. Say, if it shows 173.25.66.22 then set the value to 173.25.66.22 without the CIDR block notation.
+              Please keep in mind that if you are working from your home these IP ranges can vary from time to time.
+              Also I have found at time when on corporate VPN the IP displayed by whatismyip does not work and in that case your choices are:
+              1. Work with your corporation network teams to get the correct IP range
+              2. Dissconnect from VPN if feasible
+              3. Try connecting to SQL Dedicated Pool endpoint using SQL Server Management Studio and that's by default tries identifiy the IP address as seen by Azure Synapse Workspace which I have observed to be more accurate.
               At least 1 value is required for the array
       */
-        "value": [ ]
+        "value": [ "" ]
       },
       "synapseWorkspaceFirewallStartEndIPRanges": {
         /*
           These will correspond to the FirewallIPRanges parameter, Storage and Synapse take Firewal IP ranges in different formats so 
           this is redundant hopefully there will be a better way in the future but for now specifiy IP Ranges in differnt foramt for this paramter.
           Each element of array is a comma-separted tuple where first tuple is StartIPAddress and second is EndIPAddress.
-          Example - If CIDR Range is 173.10.100.0/24 then value is 173.10.100.0,173.10.100.255. 
+          If CIDR Range is 173.10.100.0/24 then value is 173.10.100.0,173.10.100.255 
           You can use the following online tool to get Start and End IP addresses from CIDR block - https://www.ipaddressguide.com/cidr
+
+          Example Values - [ "173.10.100.0,173.10.100.255", "173.100.10.0,173.100.10.255"]. 
         */
-        "value": []
+        "value": [ ""]
       },      
       "sqlAdministratorLogin": {
         /* MinLength is 5 */ 
